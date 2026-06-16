@@ -1,0 +1,22 @@
+{
+  "name": "fuelpass-qa-challenge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FuelPass — fuel order booking app used as a QA take-home coding challenge.",
+  "workspaces": [
+    "packages/backend",
+    "packages/frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,magenta \"npm:dev:backend\" \"npm:dev:frontend\"",
+    "dev:backend": "npm run start:dev --workspace @fuelpass/backend",
+    "dev:frontend": "npm run dev --workspace @fuelpass/frontend",
+    "build": "npm run build --workspace @fuelpass/backend && npm run build --workspace @fuelpass/frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  }
+}

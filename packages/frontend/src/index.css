@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background-app: #e9effb;
+  --accent-primary: #4168e9;
+  --text-primary: #002366;
+  --text-secondary: #5b6c8e;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--background-app);
+  color: var(--text-primary);
+}
