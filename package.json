@@ -11,9 +11,15 @@
     "dev": "concurrently -n backend,frontend -c blue,magenta \"npm:dev:backend\" \"npm:dev:frontend\"",
     "dev:backend": "npm run start:dev --workspace @fuelpass/backend",
     "dev:frontend": "npm run dev --workspace @fuelpass/frontend",
-    "build": "npm run build --workspace @fuelpass/backend && npm run build --workspace @fuelpass/frontend"
+    "build": "npm run build --workspace @fuelpass/backend && npm run build --workspace @fuelpass/frontend",
+    "test": "npm run test:e2e",
+    "test:e2e": "playwright test",
+    "test:api": "playwright test --project=api",
+    "test:ui": "playwright test --project=chromium",
+    "test:report": "playwright show-report"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.0",
     "concurrently": "^8.2.2"
   },
   "engines": {
