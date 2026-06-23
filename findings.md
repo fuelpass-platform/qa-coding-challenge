@@ -10,29 +10,39 @@
 
 ## Installation
 
+Run these commands from the repository root:
+
 ```bash
 npm install
 npx playwright install chromium
-npm run dev
 ```
 
-The app runs with the frontend at `http://localhost:5173` and the backend API at `http://localhost:3001/api`.
+For manual exploration only, start the app with `npm run dev`. The frontend runs at `http://localhost:5173` and the backend API runs at `http://localhost:3001/api`.
+
+Do not leave `npm run dev` running while executing the Playwright commands below. The Playwright config starts fresh backend and frontend servers automatically on the same ports, so existing processes on `3001` or `5173` can cause startup conflicts.
 
 ## Test Commands
 
-The automated tests assert the expected correct FuelPass behavior. Failures against the challenge build are the evidence for the matching finding IDs.
+The automated tests assert the expected correct FuelPass behavior. Failures against the challenge build are the evidence for the matching finding IDs. A non-zero exit code is expected because the tests prove planted defects; a setup problem would look like a Playwright `webServer` timeout or browser-install error.
+
+Recommended review order:
 
 ```bash
+# 1. API defect evidence
 npm run test:api
+
+# 2. UI defect evidence
 npm run test:ui
+
+# 3. Full combined run, optional if the two suites above were already reviewed
 npm run test:e2e
 ```
 
-Observed verification on 2026-06-21:
+Observed verification on 2026-06-23:
 
-- `npm run test:api` executed 7 tests; all 7 failed as expected for FP-001 through FP-007.
+- `npm run test:api` executed 8 tests; all 8 failed as expected for FP-001 through FP-007 and FP-016.
 - `npm run test:ui` executed 7 tests; all 7 failed as expected for FP-008 through FP-014.
-- `npm run test:e2e` executed all 14 automated tests; all 14 failed as expected for FP-001 through FP-014.
+- `npm run test:e2e` executed all 15 automated tests; all 15 failed as expected for FP-001 through FP-014 and FP-016.
 - `npm run build` passed for backend and frontend after adding QA infrastructure.
 - Date timezone check for FP-015:
 

@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const backendUrl = 'http://127.0.0.1:3001/api';
-const frontendUrl = 'http://127.0.0.1:5173';
+const backendUrl = 'http://localhost:3001/api';
+const frontendUrl = 'http://localhost:5173';
 
 export default defineConfig({
   testDir: './tests',
@@ -21,7 +21,7 @@ export default defineConfig({
       reuseExistingServer: false,
     },
     {
-      command: 'npm run dev --workspace @fuelpass/frontend -- --host 127.0.0.1',
+      command: 'npm run dev --workspace @fuelpass/frontend -- --host localhost',
       url: frontendUrl,
       timeout: 120_000,
       reuseExistingServer: false,
@@ -32,7 +32,7 @@ export default defineConfig({
       name: 'api',
       testMatch: /.*\.api\.spec\.ts/,
       use: {
-        baseURL: 'http://127.0.0.1:3001',
+        baseURL: 'http://localhost:3001',
       },
     },
     {
